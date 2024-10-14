@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31624.102
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThirdPartyBlockingCalls", "ThirdPartyBlockingCalls\ThirdPartyBlockingCalls.csproj", "{77BD5AE2-1802-4F05-AED8-CC3F4A34F432}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{77BD5AE2-1802-4F05-AED8-CC3F4A34F432}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77BD5AE2-1802-4F05-AED8-CC3F4A34F432}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77BD5AE2-1802-4F05-AED8-CC3F4A34F432}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77BD5AE2-1802-4F05-AED8-CC3F4A34F432}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {391765F1-78ED-4523-A546-0960D83F4EE7}
+	EndGlobalSection
+EndGlobal
