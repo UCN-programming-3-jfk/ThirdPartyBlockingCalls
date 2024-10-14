@@ -62,12 +62,7 @@ public partial class MainForm : Form
 
         _cars.Clear();
         List<Task> tasks = new List<Task>();
-
-        for (int i = 1; i <= _numberOfServicesToCall; i++)
-        {
-            int index = i;  // Local copy for closure
-            tasks.Add(Task.Run(() => StartCarRetrieval(index)));
-        }
+        Parallel.For(1, _numberOfServicesToCall+1, (index) => tasks.Add(Task.Run(() => StartCarRetrieval(index))));
 
         await Task.WhenAll(tasks);  // Wait for all tasks to complete
 
@@ -80,10 +75,9 @@ public partial class MainForm : Form
     {
         //get the corresponding car service
         var carService = CarService.GetCarService(i);
-        foreach (var car in carService.GetCars())
-        {
-            AddCarWithInvokeIfNeeded(car);
-        }
+        
+        //add all the cars from that service to the list
+        carService.GetCars().ToList().ForEach(AddCarWithInvokeIfNeeded);
     }
     #endregion
 
@@ -95,11 +89,7 @@ public partial class MainForm : Form
         _cars.Clear();
         List<Task> tasks = new List<Task>();
 
-        for (int i = 1; i <= _numberOfServicesToCall; i++)
-        {
-            int index = i;  // Local copy for closure
-            tasks.Add(Task.Run(() => StartCarRetrievalWithLock(index)));
-        }
+        Parallel.For(1, _numberOfServicesToCall + 1, (index) => tasks.Add(Task.Run(() => StartCarRetrievalWithLock(index))));
 
         await Task.WhenAll(tasks);  // Wait for all tasks to complete
 
@@ -111,6 +101,8 @@ public partial class MainForm : Form
     {
         //get the corresponding car service
         var carService = CarService.GetCarService(i);
+        
+        //add all the cars from that service to the list
         foreach (var car in carService.GetCars())
         {
             lock (this)
