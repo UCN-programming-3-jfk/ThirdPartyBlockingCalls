@@ -14,7 +14,7 @@ public  class CarService
     {
         for (int i = 0; i < 50; i++)
         {
-            Thread.Sleep(_rnd.Next(150) + 5);
+            Thread.Sleep(_rnd.Next(50) + 5);
            // Thread.Sleep(25);
             yield return new Car();
         }

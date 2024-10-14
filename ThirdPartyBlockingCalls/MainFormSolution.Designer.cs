@@ -1,7 +1,7 @@
 ﻿
 namespace ThirdPartyBlockingCalls
 {
-    partial class MainForm
+    partial class MainFormSolution
     {
         /// <summary>
         ///  Required designer variable.
@@ -61,6 +61,7 @@ namespace ThirdPartyBlockingCalls
             btnGetCarsMultiThreaded.TabIndex = 2;
             btnGetCarsMultiThreaded.Text = "Get cars &multi threaded";
             btnGetCarsMultiThreaded.UseVisualStyleBackColor = true;
+            btnGetCarsMultiThreaded.Click += btnGetCarsMultiThreaded_Click;
             // 
             // btnGetCarsMultiThreadedWithLock
             // 
@@ -72,6 +73,7 @@ namespace ThirdPartyBlockingCalls
             btnGetCarsMultiThreadedWithLock.TabIndex = 3;
             btnGetCarsMultiThreadedWithLock.Text = "Get cars multi threaded w. &lock";
             btnGetCarsMultiThreadedWithLock.UseVisualStyleBackColor = true;
+            btnGetCarsMultiThreadedWithLock.Click += btnGetCarsMultiThreadedWithLock_Click;
             // 
             // statusBar
             // 
@@ -87,14 +89,14 @@ namespace ThirdPartyBlockingCalls
             // toolStripStatusLabel1
             // 
             toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            toolStripStatusLabel1.Size = new System.Drawing.Size(0, 15);
+            toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
             // 
             // lstCars
             // 
             lstCars.Dock = System.Windows.Forms.DockStyle.Left;
             lstCars.FormattingEnabled = true;
             lstCars.IntegralHeight = false;
-            lstCars.ItemHeight = 38;
+            lstCars.ItemHeight = 25;
             lstCars.Location = new System.Drawing.Point(0, 0);
             lstCars.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             lstCars.Name = "lstCars";
@@ -111,10 +113,11 @@ namespace ThirdPartyBlockingCalls
             btnGetCarsInSeparateThread.TabIndex = 2;
             btnGetCarsInSeparateThread.Text = "Get cars in &separate thread";
             btnGetCarsInSeparateThread.UseVisualStyleBackColor = true;
+            btnGetCarsInSeparateThread.Click += btnGetCarsInSeparateThread_Click;
             // 
             // MainForm
             // 
-            AutoScaleDimensions = new System.Drawing.SizeF(15F, 38F);
+            AutoScaleDimensions = new System.Drawing.SizeF(11F, 25F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             ClientSize = new System.Drawing.Size(910, 639);
             Controls.Add(lstCars);

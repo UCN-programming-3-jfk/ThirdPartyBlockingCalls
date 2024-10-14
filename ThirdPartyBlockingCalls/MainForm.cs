@@ -23,10 +23,6 @@ public partial class MainForm : Form
 
     #region Eventhandling
     private void btnGetCars_Click(object sender, EventArgs e) => GetCars();
-    private void btnGetCarsInSeparateThread_Click(object sender, EventArgs e) => GetCarsInSeparateThread();
-    private void btnGetCarsMultiThreaded_Click(object sender, EventArgs e) => GetCarsMultiThreaded();
-    private void btnGetCarsMultiThreadedWithLock_Click(object sender, EventArgs e) => GetCarsMultiThreadedWithLock();
-
     #endregion
 
     #region Single threaded
@@ -45,71 +41,6 @@ public partial class MainForm : Form
 
         int secondsTaken = (int)(DateTime.Now - begin).TotalSeconds;
         SetStatusLabel($"Retrieval took {secondsTaken} sec. {_cars.Count} cars in list");
-    }
-    #endregion
-
-    #region Separate data collection thread
-    private void GetCarsInSeparateThread()
-    {
-        new Thread(GetCars).Start();
-    }
-    #endregion
-
-    #region Multithreaded without lock
-    private async void GetCarsMultiThreaded()
-    {
-        DateTime begin = DateTime.Now;
-
-        _cars.Clear();
-        List<Task> tasks = new List<Task>();
-        Parallel.For(1, _numberOfServicesToCall+1, (index) => tasks.Add(Task.Run(() => StartCarRetrieval(index))));
-
-        await Task.WhenAll(tasks);  // Wait for all tasks to complete
-
-        int secondsTaken = (int)(DateTime.Now - begin).TotalSeconds;
-        SetStatusLabel($"Retrieval took {secondsTaken} sec. {_cars.Count} cars in list");
-    }
-
-
-    private void StartCarRetrieval(int i)
-    {
-        //get the corresponding car service
-        var carService = CarService.GetCarService(i);
-        
-        //add all the cars from that service to the list
-        carService.GetCars().ToList().ForEach(AddCarWithInvokeIfNeeded);
-    }
-    #endregion
-
-    #region Multithreaded with lock
-    private async void GetCarsMultiThreadedWithLock()
-    {
-        DateTime begin = DateTime.Now;
-
-        _cars.Clear();
-        List<Task> tasks = new List<Task>();
-
-        Parallel.For(1, _numberOfServicesToCall + 1, (index) => tasks.Add(Task.Run(() => StartCarRetrievalWithLock(index))));
-
-        await Task.WhenAll(tasks);  // Wait for all tasks to complete
-
-        int secondsTaken = (int)(DateTime.Now - begin).TotalSeconds;
-        SetStatusLabel($"Retrieval took {secondsTaken} sec. {_cars.Count} cars in list");
-    }
-
-    private void StartCarRetrievalWithLock(int i)
-    {
-        //get the corresponding car service
-        var carService = CarService.GetCarService(i);
-        
-        //add all the cars from that service to the list
-        foreach (var car in carService.GetCars())
-        {
-            lock (this)
-            {
-                AddCarWithInvokeIfNeeded(car);
-            }
-        }
     }
     #endregion
 
